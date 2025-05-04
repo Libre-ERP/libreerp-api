@@ -17,3 +17,8 @@ obj/
 # Ignore secrets
 appsettings.Development.json
 secrets.json
+*.vsidx
+Libre-ERP-API/.vs/Libre-ERP-API/v17/.suo
+Libre-ERP-API/.vs/Libre-ERP-API/v17/.suo
+/Libre-ERP-API/.vs/Libre-ERP-API/v17
+/Libre-ERP-API/obj
