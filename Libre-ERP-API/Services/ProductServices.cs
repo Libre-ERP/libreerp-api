@@ -22,5 +22,20 @@ namespace Libre_ERP_API.Services
 
             return await CommandHelpers.ExecuteNonQueryWithReturnAsync("SP_CREATE_PRODUCT", parameters);
         }
+
+        public async Task<(int? ErrorID, string? ErrorDescription)> UpdateProductAsync(UpdateProductRequest dto)
+        {
+            ProductValidator.ValidatePrice(dto.Price);
+            var parameters = new[]
+{
+                new SqlParameter("@ID_USER", dto.IDUser),
+                new SqlParameter("@ID_PRODUCT", dto.IDProduct),
+                new SqlParameter("@NAME", dto.Name),
+                new SqlParameter("@PRICE", dto.Price),
+                new SqlParameter("@MIN_STOCK", dto.MinStock),
+            };
+
+            return await CommandHelpers.ExecuteNonQuery("SP_UPDATE_PRODUCT", parameters);
+        }
     }
 }
