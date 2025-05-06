@@ -1,0 +1,25 @@
+# Ignore build outputs
+bin/
+obj/
+
+# Ignore user-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider / VS Code / Visual Studio
+.idea/
+.vscode/
+*.log
+.vsidx
+
+# Ignore secrets
+appsettings.Development.json
+secrets.json
+*.vsidx
+Libre-ERP-API/.vs/Libre-ERP-API/v17/.suo
+Libre-ERP-API/.vs/Libre-ERP-API/v17/.suo
+/Libre-ERP-API/.vs/Libre-ERP-API/v17
+/Libre-ERP-API/obj
+Libre-ERP-API/appsettings.Development.json
