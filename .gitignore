@@ -27,3 +27,4 @@ Libre-ERP-API/.vs/Libre-ERP-API/v17/.suo
 Libre-ERP-API/.vs/Libre-ERP-API/v17/DocumentLayout.backup.json
 Libre-ERP-API/.vs/Libre-ERP-API/v17/DocumentLayout.json
 /Libre-ERP-API/obj
+*.json
