@@ -7,7 +7,7 @@ namespace Libre_ERP_API.Data
         private static readonly string _connectionString = Environment.GetEnvironmentVariable("SQL_CONNECTION_STRING") 
             ?? throw new InvalidOperationException("SQL_CONNECTION_STRING not set.");
 
-        public static async Task<(int? ErrorID, string ErrorDescription, int IDReturn)> ExecuteNonQuery(string storedProcedure, SqlParameter[] parameters)
+        public static async Task<(int? ErrorID, string ErrorDescription)> ExecuteNonQuery(string storedProcedure, SqlParameter[] parameters)
         {
             using var connection = new Microsoft.Data.SqlClient.SqlConnection(_connectionString);
             using var command = new SqlCommand(storedProcedure, connection)
@@ -17,21 +17,14 @@ namespace Libre_ERP_API.Data
 
             AddErrorParameters(command);
 
-            var idReturnParam = new SqlParameter("@ID_RETURN", SqlDbType.Int)
-            {
-                Direction = ParameterDirection.Output
-            };
-            command.Parameters.Add(idReturnParam);
-
             command.Parameters.AddRange(parameters);
 
             await connection.OpenAsync();
             await command.ExecuteNonQueryAsync();
 
             var (errorID, errorDescription) = ExtractErrorInfo(command);
-            var idReturn = idReturnParam.Value != DBNull.Value ? (int)idReturnParam.Value : -1;
 
-            return (errorID, errorDescription, idReturn);
+            return (errorID, errorDescription);
         }
         public static async Task<(int IDReturn, int? ErrorID, string ErrorDescription)> ExecuteNonQueryWithReturnAsync(string storedProcedure, SqlParameter[] parameters)
         {
