@@ -40,6 +40,19 @@ namespace Libre_ERP_API.Controllers
                     return Results.BadRequest(new { error = ex.Message });
                 }
             });
+
+            app.MapPost("/api/get-products", async (GetProductRequest dto, ProductServices service) =>
+            {
+                try
+                {
+                    var result = await service.GetProductsAsync(dto);
+                    return Results.Ok(result);
+                }
+                catch (ArgumentException ex)
+                {
+                    return Results.BadRequest(new { error = ex.Message });
+                }
+            });
         }
     }
 
