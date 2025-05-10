@@ -78,5 +78,16 @@ namespace Libre_ERP_API.Services
 
             return await CommandHelpers.ExecuteNonQuery("SP_INCREASE_PRODUCT_STOCK", parameters);
         }
+
+        public async Task<(int? ErrorID, string? ErrorDescription)> DeactivateProductAsync(DeactivateProductRequest req)
+        {
+            var parameters = new[]
+            {
+                new SqlParameter("@ID_USER", req.IDUser),
+                new SqlParameter("@ID_PRODUCT", req.IDProduct),
+            };
+
+            return await CommandHelpers.ExecuteNonQuery("SP_DEACTIVE_PRODUCT", parameters);
+        }
     }
 }
