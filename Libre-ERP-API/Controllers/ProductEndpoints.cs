@@ -70,6 +70,22 @@ namespace Libre_ERP_API.Controllers
                     return Results.BadRequest(new { error = ex.Message });
                 }
             });
+            app.MapPut("/api/product/deactive", async (DeactivateProductRequest dto, ProductServices service) =>
+            {
+                try
+                {
+                    var result = await service.DeactivateProductAsync(dto);
+                    return Results.Ok(new BaseResponse
+                    {
+                        ErrorID = result.ErrorID,
+                        ErrorDescription = result.ErrorDescription
+                    });
+                }
+                catch (ArgumentException ex)
+                {
+                    return Results.BadRequest(new { error = ex.Message });
+                }
+            });
         }
     }
 
