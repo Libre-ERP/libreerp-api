@@ -66,5 +66,17 @@ namespace Libre_ERP_API.Services
                 }
             };
         }
+
+        public async Task<(int? ErrorID, string? ErrorDescription)> IncreaseProductStockAsync(IncreaseProductStockRequest req)
+        {
+            var parameters = new[]
+            {
+                new SqlParameter("@ID_USER", req.IDUser),
+                new SqlParameter("@ID_PRODUCT", req.IDProduct),
+                new SqlParameter("@QUANTITY", req.Quantity)
+            };
+
+            return await CommandHelpers.ExecuteNonQuery("SP_INCREASE_PRODUCT_STOCK", parameters);
+        }
     }
 }
