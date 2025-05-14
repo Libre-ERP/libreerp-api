@@ -1,4 +1,5 @@
 using Libre_ERP_API.Controllers;
+using Libre_ERP_API.Helpers;
 using Libre_ERP_API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ProductServices>();
+builder.Services.AddScoped<PasswordHelper>();
+builder.Services.AddScoped<UserServices>();
 
 var app = builder.Build();
 
@@ -27,5 +30,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.MapProductEndpoints();
+app.MapUserEndpoints();
 
 app.Run();
