@@ -7,7 +7,7 @@ namespace Libre_ERP_API.Data
         private static readonly string _connectionString = Environment.GetEnvironmentVariable("SQL_CONNECTION_STRING") 
             ?? throw new InvalidOperationException("SQL_CONNECTION_STRING not set.");
 
-        public static async Task<(int? ErrorID, string ErrorDescription)> ExecuteNonQuery(string storedProcedure, SqlParameter[] parameters)
+        public static async Task<(int? ErrorID, string? ErrorDescription)> ExecuteNonQuery(string storedProcedure, SqlParameter[] parameters)
         {
             using var connection = new Microsoft.Data.SqlClient.SqlConnection(_connectionString);
             using var command = new SqlCommand(storedProcedure, connection)
@@ -26,7 +26,7 @@ namespace Libre_ERP_API.Data
 
             return (errorID, errorDescription);
         }
-        public static async Task<(int IDReturn, int? ErrorID, string ErrorDescription)> ExecuteNonQueryWithReturnAsync(string storedProcedure, SqlParameter[] parameters)
+        public static async Task<(int IDReturn, int? ErrorID, string? ErrorDescription)> ExecuteNonQueryWithReturnAsync(string storedProcedure, SqlParameter[] parameters)
         {
             using var connection = new Microsoft.Data.SqlClient.SqlConnection(_connectionString);
             using var command = new SqlCommand(storedProcedure, connection)
@@ -53,7 +53,7 @@ namespace Libre_ERP_API.Data
             return (idReturn, errorID, errorDescription);
         }
 
-        public static async Task<(List<T> Data, int? ErrorID, string ErrorDescription)> ExecuteReaderAsync<T>(string storedProcedure, SqlParameter[] parameters, Func<SqlDataReader, T> mapFunction)
+        public static async Task<(List<T> Data, int? ErrorID, string? ErrorDescription)> ExecuteReaderAsync<T>(string storedProcedure, SqlParameter[] parameters, Func<SqlDataReader, T> mapFunction)
         {
             var data = new List<T>();
 
@@ -93,7 +93,7 @@ namespace Libre_ERP_API.Data
                 Direction = ParameterDirection.Output
             });
         }
-        private static (int? ErrorID, string ErrorDescription) ExtractErrorInfo(SqlCommand command)
+        private static (int? ErrorID, string? ErrorDescription) ExtractErrorInfo(SqlCommand command)
         {
             int? errorID = command.Parameters["@ERROR_ID"].Value is int id ? id : null;
             string? errorDescription = command.Parameters["@ERROR_DESCRIPTION"].Value?.ToString();
