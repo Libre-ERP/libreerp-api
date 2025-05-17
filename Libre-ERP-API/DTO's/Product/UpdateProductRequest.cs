@@ -12,7 +12,7 @@ namespace Libre_ERP_API.DTO_s
         public int IDProduct { get; set; }
         [Required]
         [StringLength(100, ErrorMessage = "Name must be less than 100 characters")]
-        public string Name { get; set; }
+        public required string Name { get; set; }
         [Required]
         [Range(0, int.MaxValue, ErrorMessage = "Price must be greater than 0")]
         public decimal Price { get; set; }
