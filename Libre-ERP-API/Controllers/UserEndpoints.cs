@@ -26,6 +26,26 @@ namespace Libre_ERP_API.Controllers
                     return Results.BadRequest(new { error = ex.Message });
                 }
             });
+            app.MapPost("/api/login", async (LoginRequest dto, UserServices service) =>
+            {
+                try
+                {
+                    var result = await service.LoginAsync(dto);
+
+                    if (result.ErrorID.HasValue)
+                    {
+                        return Results.Unauthorized();
+                    }
+
+                    return Results.Ok(result); 
+                }
+                catch (ArgumentException ex)
+                {
+                    return Results.BadRequest(new { error = ex.Message });
+                }
+
+            });
         }
+
     }
 }
