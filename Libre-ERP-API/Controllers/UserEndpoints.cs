@@ -45,6 +45,22 @@ namespace Libre_ERP_API.Controllers
                 }
 
             });
+            app.MapPost("/api/user/update", async (UpdateUserRequest dto, UserServices service) =>
+            {
+                try
+                {
+                    var result = await service.UpdateUserAsync(dto);
+                    return Results.Ok(new BaseResponse
+                    {
+                        ErrorID = result.ErrorID,
+                        ErrorDescription = result.ErrorDescription
+                    });
+                }
+                catch (ArgumentException ex)
+                {
+                    return Results.BadRequest(new { error = ex.Message });
+                }
+            });
         }
 
     }
