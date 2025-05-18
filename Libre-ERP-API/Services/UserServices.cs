@@ -88,5 +88,21 @@ namespace Libre_ERP_API.Services
             };
         }
 
+        public async Task<(int? ErrorID, string? ErrorDescription)> UpdateUserAsync(UpdateUserRequest req)
+        {
+
+            var parameters = new[]
+            {
+            new SqlParameter("@ID_USER", req.IDUser),
+            new SqlParameter("@NAME", req.Name),
+            new SqlParameter("@CURRENCY_CODE", req.CurrencyCode),
+            new SqlParameter("@LANG_CODE", req.LangCode),
+            new SqlParameter("@ID_TIME_ZONE", req.IDTimeZone)
+
+        };
+
+            return await CommandHelpers.ExecuteNonQuery("SP_UPDATE_USER", parameters);
+        }
+
     }
 }
