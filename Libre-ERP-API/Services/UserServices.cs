@@ -9,7 +9,16 @@ namespace Libre_ERP_API.Services
     public class UserServices
     {
         private readonly PasswordHelper _passwordService;
-        public UserServices(PasswordHelper passwordService) => _passwordService = passwordService;
+        private readonly JWTHelper _jwtHelper;
+        public UserServices(PasswordHelper passwordService, JWTHelper jwtHelper)
+        {
+            _passwordService = passwordService;
+            _jwtHelper = jwtHelper;
+        }
+
+        
+
+  
         public async Task<(int? ErrorID, string? ErrorDescription)> CreateUserAsync(CreateUserRequest req)
         {
 
