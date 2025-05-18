@@ -12,6 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ProductServices>();
 builder.Services.AddScoped<PasswordHelper>();
+builder.Services.AddScoped<JWTHelper>();
 builder.Services.AddScoped<UserServices>();
 
 var app = builder.Build();

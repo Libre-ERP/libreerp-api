@@ -3,7 +3,7 @@
     public class GetProductResponse
     {
         public IReadOnlyList<GetProductDTO> ProductList { get; init; } = new List<GetProductDTO>();
-        public BaseResponse error { get; set; }
+        public BaseResponse error { get; set; } = new BaseResponse();
     }
 
     public readonly record struct GetProductDTO(
