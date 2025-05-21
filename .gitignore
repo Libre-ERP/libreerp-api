@@ -1,30 +1,38 @@
-# Ignore build outputs
+# Build outputs
 bin/
 obj/
+*.cache
+*.dll
+*.exe
 
-# Ignore user-specific files
+# User-specific files
 *.user
 *.suo
 *.userosscache
 *.sln.docstates
 
-# Rider / VS Code / Visual Studio
+# IDE and editor folders
 .idea/
 .vscode/
-*.log
-.vsidx
+.vs/
 
-# Ignore secrets
-appsettings.Development.json
-secrets.json
+# Logs and temp
+*.log
 *.vsidx
-Libre-ERP-API/.vs/Libre-ERP-API/v17/.suo
-Libre-ERP-API/.vs/Libre-ERP-API/v17/.suo
-/Libre-ERP-API/.vs/Libre-ERP-API/v17
-/Libre-ERP-API/obj
-Libre-ERP-API/appsettings.Development.json
-Libre-ERP-API/.vs/Libre-ERP-API/v17/.suo
-Libre-ERP-API/.vs/Libre-ERP-API/v17/DocumentLayout.backup.json
-Libre-ERP-API/.vs/Libre-ERP-API/v17/DocumentLayout.json
-/Libre-ERP-API/obj
-*.json
+
+# Output folders
+**/Debug/
+**/Release/
+
+# Configuration and secrets
+appsettings.*.json
+secrets.json
+*.backup.json
+*.DocumentLayout.json
+
+# VS Project system folders
+**/ProjectEvaluation/
+**/DesignTimeBuild/
+
+# Compiled binaries
+*.bin
