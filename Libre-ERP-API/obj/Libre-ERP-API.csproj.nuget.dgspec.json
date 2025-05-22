@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\abran\\Documents\\GitHub\\libreerp-api\\Libre-ERP-API\\Libre-ERP-API.csproj": {}
+    "C:\\Users\\angel\\Source\\Repos\\libreerp-api\\Libre-ERP-API\\Libre-ERP-API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\abran\\Documents\\GitHub\\libreerp-api\\Libre-ERP-API\\Libre-ERP-API.csproj": {
+    "C:\\Users\\angel\\Source\\Repos\\libreerp-api\\Libre-ERP-API\\Libre-ERP-API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\abran\\Documents\\GitHub\\libreerp-api\\Libre-ERP-API\\Libre-ERP-API.csproj",
+        "projectUniqueName": "C:\\Users\\angel\\Source\\Repos\\libreerp-api\\Libre-ERP-API\\Libre-ERP-API.csproj",
         "projectName": "Libre-ERP-API",
-        "projectPath": "C:\\Users\\abran\\Documents\\GitHub\\libreerp-api\\Libre-ERP-API\\Libre-ERP-API.csproj",
-        "packagesPath": "C:\\Users\\abran\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\abran\\Documents\\GitHub\\libreerp-api\\Libre-ERP-API\\obj\\",
+        "projectPath": "C:\\Users\\angel\\Source\\Repos\\libreerp-api\\Libre-ERP-API\\Libre-ERP-API.csproj",
+        "packagesPath": "C:\\Users\\angel\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\angel\\Source\\Repos\\libreerp-api\\Libre-ERP-API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\abran\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\angel\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -39,13 +39,7 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.200"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -79,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
