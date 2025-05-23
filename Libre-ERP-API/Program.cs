@@ -14,6 +14,7 @@ builder.Services.AddScoped<ProductServices>();
 builder.Services.AddScoped<PasswordHelper>();
 builder.Services.AddScoped<JWTHelper>();
 builder.Services.AddScoped<UserServices>();
+builder.Services.AddScoped<TimeZoneService>();
 
 var app = builder.Build();
 
@@ -32,5 +33,6 @@ app.MapControllers();
 
 app.MapProductEndpoints();
 app.MapUserEndpoints();
+app.MapTimeZoneEndpoints();
 
 app.Run();
