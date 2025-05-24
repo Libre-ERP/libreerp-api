@@ -21,7 +21,7 @@ namespace Libre_ERP_API.Services
                 outputParams,
                 reader => new GetTimeZonesResponse
                 {
-                    Id = reader.GetByte(0),
+                    Id = reader.GetInt32(0),
                     Country = reader.GetString(1),
                     TimeZone = reader.GetString(2)
                 });
