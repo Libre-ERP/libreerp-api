@@ -1,0 +1,43 @@
+﻿using Libre_ERP_API.Data;
+using Libre_ERP_API.DTO_s;
+using Microsoft.Data.SqlClient;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using System.Data;
+
+namespace Libre_ERP_API.Services
+{
+    public class TransactionService
+    {
+        public async Task<(int? ErrorID, string? ErrorDescription)> CreateTransactionAsync(CreateTransactionRequest req)
+        {
+            var parameters = new[]
+            {
+                new SqlParameter("@ID_USER", req.IdUser),
+                new SqlParameter("@TYPE", req.Type),
+                new SqlParameter("@AMOUNT", req.Amount),
+                new SqlParameter("@DESCRIPTION", req.Description ?? (object)DBNull.Value),
+                new SqlParameter("@ERROR_ID", SqlDbType.Int) { Direction = ParameterDirection.Output },
+                new SqlParameter("@ERROR_DESCRIPTION", SqlDbType.VarChar, -1) { Direction = ParameterDirection.Output }
+            };
+
+            await CommandHelpers.ExecuteNonQuery("SP_CREATE_TRANSACTION", parameters);
+
+            var errorId = (int?)parameters[4].Value;
+            var errorDescription = parameters[5].Value?.ToString();
+
+            if (errorId != null)
+            {
+                return (errorId, errorDescription);
+            }
+            else
+            {
+                return (errorId, "Transaction registered successfully");
+
+            }
+
+        }
+    }
+
+}
+
+
