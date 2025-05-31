@@ -12,6 +12,12 @@ namespace Libre_ERP_API.Controllers
                 var result = await service.CreateTransactionAsync(req);
                 return result;
             });
+
+            app.MapPost("/api/transactions/total", async (GetFinancialTotalRequest req, TransactionService service) =>
+            {
+                var result = await service.GetFinancialTotalByDateAsync(req);
+                return result;
+            });
         }
 
     }
