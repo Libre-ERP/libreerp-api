@@ -4,6 +4,7 @@ using Libre_ERP_API.DTO_s.Transaction;
 using Microsoft.Data.SqlClient;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using System.Data;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Libre_ERP_API.Services
 {
@@ -37,6 +38,51 @@ namespace Libre_ERP_API.Services
             }
 
         }
+
+        public async Task<GetFinancialTotalResponse> GetFinancialTotalByDateAsync(GetFinancialTotalRequest req)
+        {
+            var parameters = new[]
+            {
+                new SqlParameter("@ID_USER", req.IdUser),
+                new SqlParameter("@START_DATE", req.StartDate),
+                new SqlParameter("@END_DATE", req.EndDate),
+                new SqlParameter("@TOTAL_INCOME", SqlDbType.Decimal) {Direction = ParameterDirection.Output},
+                new SqlParameter("@TOTAL_EXPENSE", SqlDbType.Decimal) {Direction = ParameterDirection.Output} ,
+                new SqlParameter("@ERROR_ID", SqlDbType.Int) { Direction = ParameterDirection.Output },
+                new SqlParameter("@ERROR_DESCRIPTION", SqlDbType.VarChar, -1) { Direction = ParameterDirection.Output}
+            };
+            var data = await CommandHelpers.ExecuteReaderAsync<GetFinancialTotalResponse>(
+                "SP_GET_FINANCIAL_TOTAL_BY_DATE", 
+                parameters,
+                reader => new GetFinancialTotalResponse
+                {
+                    TotalIncome = reader.GetDecimal(0),
+                    TotalExpense = reader.GetDecimal(1),
+                    ErrorID = reader.GetInt32(2),
+                    ErrorDescription = reader.GetString(3)
+                }
+                );
+
+            if (data.Data[2].ErrorID != null)
+            {
+                return new GetFinancialTotalResponse();
+            }
+            else
+            {
+                return new GetFinancialTotalResponse
+                {
+                    TotalIncome = data.Data[0].TotalIncome,
+                    TotalExpense = data.Data[1].TotalExpense,
+                    ErrorID = data.Data[2].ErrorID,
+                    ErrorDescription = data.Data[3].ErrorDescription
+                };
+
+            }
+
+
+
+        }
+
     }
 
 }
