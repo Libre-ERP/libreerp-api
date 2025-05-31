@@ -56,10 +56,10 @@ namespace Libre_ERP_API.Services
                 parameters,
                 reader => new GetFinancialTotalResponse
                 {
-                    TotalIncome = reader.GetDecimal(0),
-                    TotalExpense = reader.GetDecimal(1),
-                    ErrorID = reader.GetInt32(2),
-                    ErrorDescription = reader.GetString(3)
+                    TotalIncome = reader.GetDecimal(reader.GetOrdinal("TOTAL_INCOME")),
+                    TotalExpense = reader.GetDecimal(reader.GetOrdinal("TOTAL_EXPENSE")),
+                    ErrorID = reader.GetInt32(reader.GetOrdinal("ERROR_ID")),
+                    ErrorDescription = reader.GetString(reader.GetOrdinal("ERROR_DESCRIPTION"))
                 }
                 );
 
